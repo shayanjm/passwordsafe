@@ -12,8 +12,8 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
     </head>
     <body ng-app="passwordsafeApp">
@@ -27,7 +27,17 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        <div id="wrap">
         <div ng-view=""></div>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted credit">
+                With love from
+                <a href="http://www.shayanmohanty.com/">@shayanjm</a>
+                </p>
+            </div>
+        </div>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <script>

@@ -1,8 +1,10 @@
-<div class="jumbotron">
 <div class="container">
-  <h1>Sup yo.</h1>
-  <p>You now have</p>
-  <p ng-repeat="thing in awesomeThings">{{thing}}, </p>
-  <p>installed.</p>
+        <div class="page-header">
+            <h1>Sup yo.</h1>
+        </div>
+        <p class="lead">You now have:</p>
+        <ul>
+            <li ng-repeat="thing in awesomeThings">{{thing}}</li>
+        </ul>
+        <p class="lead">installed.</p>
   </div>
-</div>

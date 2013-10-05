@@ -1,5 +1,6 @@
 var express = require('express'),
     path = require('path');
+    passport = require('passport');
 
 module.exports = function (app) {
     app.configure('production', function () {
@@ -13,6 +14,8 @@ module.exports = function (app) {
         app.use(express.methodOverride());
         app.use(express.cookieParser('your secret here'));
         app.use(express.session());
+        app.use(passport.initialize());
+        app.use(passport.session());
         app.use(app.router);
         app.use(express.static(path.join(app.directory, 'dist')));
     });

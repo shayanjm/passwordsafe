@@ -1,13 +1,7 @@
 'use strict';
 
-angular.module('passwordsafeApp', [])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+angular.module('passwordsafeApp', ['ngCookies', 'ngResource', 'psa.controllers', 'psa.directives', 'psa.services']);
+
+// bundling dependencies
+window.angular.module('psa.controllers', ['psa.controllers.header', 'psa.controllers.index']);
+window.angular.module('psa.services', ['psa.services.global']);

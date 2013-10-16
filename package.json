@@ -22,7 +22,8 @@
         "underscore": "latest",
         "async": "latest",
         "view-helpers": "latest",
-        "mean-logger": "latest"
+        "mean-logger": "latest",
+        "mers": "latest"
     },
     "devDependencies": {
         "grunt": "~0.4.1",

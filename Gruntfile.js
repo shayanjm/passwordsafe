@@ -5,9 +5,9 @@ var path = require('path');
 
 // # Globbing
 // for performance reasons we're only matching one level down:
-// 'test/spec/{,*/}*.js'
+// 'test/spec/front//{,*/}*.js'
 // use this if you want to recursively match all subfolders:
-// 'test/spec/**/*.js'
+// 'test/spec/front//**/*.js'
 
 module.exports = function (grunt) {
   // load all grunt tasks
@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       coffeeTest: {
-        files: ['test/spec/{,*/}*.coffee'],
+        files: ['test/spec/front//{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
       livereload: {
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
       test: {
         files: [{
           expand: true,
-          cwd: 'test/spec',
+          cwd: 'test/spec/front/',
           src: '{,*/}*.coffee',
           dest: '.tmp/spec',
           ext: '.js'

@@ -1,8 +1,9 @@
 TODO
 ========
 
-+ Install Mocha + Chai for API testing
++ Add fixtures for tests on Authentication.
 
-+ Add Mocha + Chai to GruntFile
++ Build Authentication tests
 
-+ Optimize GruntFile for better workflow
++ Populate User Model & Schema
+

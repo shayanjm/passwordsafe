@@ -6,6 +6,7 @@ angular.module('passwordsafeApp')
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma',
-      'Bootstrap 3'
+      'Mocha + Chai',
+      'Bootstrap 3',
     ];
   });

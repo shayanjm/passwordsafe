@@ -11,4 +11,9 @@ module.exports = function (app) {
         res.send('PasswordSafe API is running!');
     });
 
+    app.post('/login',
+      passport.authenticate('local'),
+      function(req, res) {
+        res.send('Hello ' + req.user.username + '!');
+      });
 };

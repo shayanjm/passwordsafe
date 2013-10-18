@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       coffeeTest: {
-        files: ['test/spec/front//{,*/}*.coffee'],
+        files: ['test//{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
       livereload: {
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
       test: {
         files: [{
           expand: true,
-          cwd: 'test/spec/front/',
+          cwd: 'test/',
           src: '{,*/}*.coffee',
           dest: '.tmp/spec',
           ext: '.js'
@@ -261,6 +261,14 @@ module.exports = function (grunt) {
           ]
         }
       }
+    },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'dot'
+        },
+        src: ['test/back/**/*.js']
+      }
     }
   });
 
@@ -282,6 +290,7 @@ module.exports = function (grunt) {
     'clean:server',
     'concurrent:test',
     'express:test',
+    'mochaTest',
     'karma'
   ]);
 

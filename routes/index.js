@@ -16,4 +16,9 @@ module.exports = function (app) {
       function(req, res) {
         res.send('Hello ' + req.user.username + '!');
       });
+
+    app.get('/logout', function(req, res){
+      req.logout();
+      res.send('You have successfully signed out.');
+    });
 };

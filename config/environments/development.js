@@ -7,6 +7,7 @@ var express = require('express'),
 
 var User;
 function setupRest() {
+
     // Initialize Models
     require('../../app/models/employee')(rest.mongoose);
     User = require('../../app/models/user')(rest.mongoose);
@@ -37,11 +38,8 @@ module.exports = function (app) {
         app.use(app.router);
         app.use(express.errorHandler());
         setupRest();
-        console.log(config.test1);
-        console.log(config.test1.test2);
-        console.log(config.test1.test2.test3);
 
-        // Auth Stuff
+        // Authentication Stuff
         passport.serializeUser(function(user, done) {
             done(null, user);
         });

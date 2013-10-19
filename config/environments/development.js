@@ -2,11 +2,11 @@ var express = require('express'),
     path = require('path'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
-    rest = require('mers')({uri: 'mongodb://localhost/testDB1'});
+    config = require('../config'),
+    rest = require('mers')({uri: config.development.db.uri});
 
 var User;
 function setupRest() {
-
     // Initialize Models
     require('../../app/models/employee')(rest.mongoose);
     User = require('../../app/models/user')(rest.mongoose);
@@ -37,6 +37,9 @@ module.exports = function (app) {
         app.use(app.router);
         app.use(express.errorHandler());
         setupRest();
+        console.log(config.test1);
+        console.log(config.test1.test2);
+        console.log(config.test1.test2.test3);
 
         // Auth Stuff
         passport.serializeUser(function(user, done) {

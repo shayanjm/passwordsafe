@@ -5,8 +5,10 @@ module.exports = function(mongoose) {
     var UserSchema = new Schema({
         username: { type: String, required: true, unique: true },
         password: { type: String, required: true },
-        email: { type: String, required: true, unique: true},
-        admin: { type: Boolean, required: true }
+        email: { type: String, required: true, unique: true },
+        access: { type: Number, min: 0, max: 5, required: true },
+        teamNames: { type: String, required: false },
+        dateJoined: { type: Date, required: true, default: Date.now }
     });
 
     UserSchema.pre('save', function (next) {
@@ -33,8 +35,6 @@ module.exports = function(mongoose) {
     };
 
     var User = mongoose.model('user', UserSchema);
-    var user = new User({ username: 'shayanjm6', password: 'test6', email: 'test@test.test6', admin: true });
-    user.save();
 
     return User;
 };

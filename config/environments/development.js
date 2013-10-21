@@ -3,15 +3,34 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     config = require('../config'),
+    mongoose = require('mongoose'),
     rest = require('mers')({uri: config.development.db.uri});
 
+// Set up Mongoose
+mongoose.connect(config.development.db.uri);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error to MongoDB: '));
+db.once('open', function callback() {
+    console.log('Mongoose is now connected to MongoDB');
+});
+
+// Setup our RESTful API
 var User;
 function setupRest() {
 
-    // Initialize Models
+    // Initialize Models to be exposed by API
     require('../../app/models/employee')(rest.mongoose);
-    User = require('../../app/models/user')(rest.mongoose);
+
+    // Initialize Models not to be exposed by API
+    User = require('../../app/models/user')(mongoose);
+
+    // We want to only deliver the payload when we expose our API.
+    rest.responseStream.prototype.format = function (data) {
+        return JSON.stringify(data.payload);
+    }
 }
+
+// Setup Express & PassportJS
 module.exports = function (app) {
     app.configure('development', function () {
         app.use(function staticsPlaceholder(req, res, next) {

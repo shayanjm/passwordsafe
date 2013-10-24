@@ -22,7 +22,7 @@ function setupRest() {
     require('../../app/models/employee')(rest.mongoose);
 
     // Initialize Models not to be exposed by API
-    User = require('../../app/models/user')(mongoose);
+    User = require('../../app/models/user')(rest.mongoose);
 
     // We want to only deliver the payload when we expose our API.
     rest.responseStream.prototype.format = function (data) {

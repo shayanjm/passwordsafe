@@ -20,7 +20,8 @@
         "view-helpers": "latest",
         "mean-logger": "latest",
         "mers": "latest",
-        "bcrypt": "latest"
+        "bcrypt": "latest",
+        "scrypt": "latest"
     },
     "devDependencies": {
         "grunt": "~0.4.1",

@@ -22,4 +22,13 @@ module.exports = function (app) {
       req.logout();
       res.send('You have successfully signed out.');
     });
+
+    app.get('/check', function(req, res){
+        if(req.isAuthenticated()){
+            res.send('You are authenticated');
+        }
+        else {
+            res.send('You are not authenticated');
+        }
+    });
 };

@@ -7,3 +7,5 @@ TODO
 
 + Populate User Model & Schema
 
++ Swap Bcrypt for Scrypt
+

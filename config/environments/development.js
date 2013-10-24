@@ -9,7 +9,7 @@ var express = require('express'),
 // Set up Mongoose
 mongoose.connect(config.development.db.uri);
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error to MongoDB: '));
+db.on('error', console.error.bind(console, 'Connection error to MongoDB: '));
 db.once('open', function callback() {
     console.log('Mongoose is now connected to MongoDB');
 });
@@ -44,7 +44,7 @@ module.exports = function (app) {
         app.use(express.logger('dev'));
         app.use(express.bodyParser());
         app.use(express.methodOverride());
-        app.use(express.cookieParser('your secret here'));
+        app.use(express.cookieParser('uwotm8?'));
         app.use(express.session());
         app.use(passport.initialize());
         app.use(passport.session());

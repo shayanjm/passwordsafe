@@ -33,11 +33,11 @@ module.exports = function(mongoose) {
     };
 
     var User = mongoose.model('user', UserSchema);
-    // user = new User({ username: "ShayanTest", password: "ShayanTest", email: "shayan@shayan.test", access: 5 });
-    // user.save(function(err){
-    //     if(err){
-    //         console.log("ERROR WITH SAVING FIXTURE:" + err)
-    //     }
-    // });
+    user = new User({ username: "ShayanTest", password: "ShayanTest", email: "shayan@shayan.test", access: 5 });
+    user.save(function(err){
+        if(err){
+            console.log("ERROR WITH SAVING FIXTURE:" + err)
+        }
+    });
     return User;
 };

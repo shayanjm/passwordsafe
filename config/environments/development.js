@@ -3,8 +3,12 @@ var express = require('express'),
     passport = require('passport'),
     LocalStrategy = require('passport-local').Strategy,
     config = require('../config'),
+<<<<<<< HEAD
     mongoose = require('mongoose'),
     rest = require('mers')({uri: config.development.db.uri});
+=======
+    rest = require('mers')({uri: config.development.database.uri});
+>>>>>>> Added a config file
 
 // Set up Mongoose
 mongoose.connect(config.development.db.uri);

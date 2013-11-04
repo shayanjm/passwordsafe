@@ -33,7 +33,7 @@ module.exports = function (grunt) {
         tasks: ['coffee:dist']
       },
       coffeeTest: {
-        files: ['test//{,*/}*.coffee'],
+        files: ['test/{,*/}*.coffee'],
         tasks: ['coffee:test']
       },
       livereload: {

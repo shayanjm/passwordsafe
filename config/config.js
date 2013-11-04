@@ -1,4 +1,5 @@
 module.exports = {
+<<<<<<< HEAD
 
     development: {
         db: {
@@ -14,3 +15,11 @@ module.exports = {
 
     }
 };
+=======
+    development: {
+        database: {
+            uri: 'mongodb://localhost/testDB1'
+        }
+    }
+}
+>>>>>>> Added a config file

@@ -1,9 +1,6 @@
 module.exports = function(mongoose) {
-    // var bcrypt = require('bcrypt');
-    // var SALT_WORK_FACTOR = 10;
-    var scrypt = require('scrypt');
-    var maxtime = 0.1;
-    var maxmem = 0, maxmemfrac = 0.5;
+    var bcrypt = require('bcrypt');
+    var SALT_WORK_FACTOR = 10;
     var Schema = mongoose.Schema;
     var UserSchema = new Schema({
         username: { type: String, required: true, unique: true },
@@ -18,26 +15,31 @@ module.exports = function(mongoose) {
         var user = this;
 
         if(!user.isModified('password')) return next();
-            scrypt.passwordHash(user.password, maxtime, maxmem, maxmemfrac, function(err, pwdhash) {
+
+        bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+            if(err) return next(err);
+
+            bcrypt.hash(user.password, salt, function(err, hash) {
                 if(err) return next(err);
-                user.password = pwdhash;
+                user.password = hash;
                 next();
             });
+        });
     });
 
     UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-        scrypt.verifyHash(this.password, candidatePassword, function(err, isMatch) {
-            if(err) return cb(err);
-            cb(null, isMatch);
-        });
+    bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+        if(err) return cb(err);
+        cb(null, isMatch);
+    });
     };
 
     var User = mongoose.model('user', UserSchema);
-    user = new User({ username: "ShayanTest", password: "ShayanTest", email: "shayan@shayan.test", access: 5 });
-    user.save(function(err){
-        if(err){
-            console.log("ERROR WITH SAVING FIXTURE:" + err)
-        }
-    });
+    // user = new User({ username: "ShayanTest", password: "ShayanTest", email: "shayan@shayan.test", access: 5 });
+    // user.save(function(err){
+    //     if(err){
+    //         console.log("ERROR WITH SAVING FIXTURE:" + err)
+    //     }
+    // });
     return User;
 };

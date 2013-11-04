@@ -308,6 +308,11 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
+  grunt.registerTask('initDB', function(){
+    var done = this.async();
+    require(__dirname + '/config/fixtures/user.fix')(done);
+  });
+
   grunt.registerTask('default', [
     'jshint',
     'test',

@@ -2,14 +2,9 @@ module.exports = {
 
     development: {
         db: {
-            uri: 'mongodb://localhost/testDB1'
+            uri: 'mongodb://localhost/pwSafeDevelopment'
         }
     },
-
-    testing: {
-
-    },
-
     production: {
 
     }

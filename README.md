@@ -1,11 +1,11 @@
 TODO
 ========
 
-+ Add fixtures for tests on Authentication.
++ ~~Add fixtures for tests on Authentication.~~
 
-+ Build Authentication tests
++ ~~Build Authentication tests~~
 
-+ Populate User Model & Schema
++ ~~Populate User Model & Schema~~
 
-+ Swap Bcrypt for Scrypt
++ ~~Swap Bcrypt for Scrypt~~
 

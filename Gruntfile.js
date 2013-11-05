@@ -314,7 +314,6 @@ module.exports = function (grunt) {
     var done = this.async();
     mongoose.connect(config.development.db.uri);
     require(__dirname + '/config/fixtures/user.fix')(done, mongoose);
-    require(__dirname + '/config/fixtures/vault.fix')(done, mongoose);
   });
 
   grunt.registerTask('default', [

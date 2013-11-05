@@ -1,4 +1,4 @@
-module.exports = function(done, mongoose) {
+module.exports = function(mongoose) {
     var Schema = mongoose.Schema;
     var VaultSchema = new Schema({
         owner: { type: Schema.Types.ObjectId, ref: 'User' },

@@ -1,7 +1,7 @@
 TODO
 ========
 
-+ ~~ Create Safes for users (now called Vaults). ~~
++ ~~Create Safes for users (now called Vaults).~~
 
 + Add encryption for passwords within Vaults. <--
 

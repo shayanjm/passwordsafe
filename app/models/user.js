@@ -8,7 +8,7 @@ module.exports = function(mongoose) {
         email: { type: String, required: true, unique: true },
         access: { type: Number, min: 0, max: 5, required: true },
         teamNames: [{ type: String, required: false }],
-        safes: [{ type: Schema.Types.ObjectId, ref: 'Safe' }],
+        vaults: [{ type: Schema.Types.ObjectId, ref: 'Vault' }],
         dateJoined: { type: Date, required: true, default: Date.now }
     });
 

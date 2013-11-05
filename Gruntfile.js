@@ -309,8 +309,12 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('initDB', function(){
+    var mongoose = require('mongoose');
+    var config = require(__dirname + '/config/config');
     var done = this.async();
-    require(__dirname + '/config/fixtures/user.fix')(done);
+    mongoose.connect(config.development.db.uri);
+    require(__dirname + '/config/fixtures/user.fix')(done, mongoose);
+    require(__dirname + '/config/fixtures/vault.fix')(done, mongoose);
   });
 
   grunt.registerTask('default', [

@@ -1,6 +1,6 @@
-module.exports = function(mongoose) {
-    var Schema = mongoose.schema;
-    var SafeSchema = new Schema({
+module.exports = function(done, mongoose) {
+    var Schema = mongoose.Schema;
+    var VaultSchema = new Schema({
         owner: { type: Schema.Types.ObjectId, ref: 'User' },
         applications: [{
             name: { type: String, required: true },
@@ -9,6 +9,6 @@ module.exports = function(mongoose) {
         }]
     });
 
-    var Safe = mongoose.model('safe', SafeSchema);
-    return Safe;
+    var Vault = mongoose.model('vault', VaultSchema);
+    return Vault;
 };

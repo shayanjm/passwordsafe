@@ -1,11 +1,11 @@
 TODO
 ========
 
-+ Create Safes for users.
++ ~~ Create Safes for users (now called Vaults). ~~
 
-+ Add Access levels (Regular user, Team Leader, Admin, Super-Admin)
++ Add encryption for passwords within Vaults.
 
-+ Encrypt passwords within Safes
++ Make Access levels (Regular user, Team Leader, Admin, Super-Admin) actually mean something
 
 + ~~Add fixtures for tests on Authentication.~~
 

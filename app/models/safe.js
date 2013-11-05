@@ -8,4 +8,7 @@ module.exports = function(mongoose) {
             password: { type: String, required: true }
         }]
     });
+
+    var Safe = mongoose.model('safe', SafeSchema);
+    return Safe;
 };

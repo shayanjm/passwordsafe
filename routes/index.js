@@ -13,7 +13,7 @@ module.exports = function (app) {
     });
 
     app.post('/login',
-      passport.authenticate('local'),
+      passport.authenticate('user'),
       function(req, res) {
         res.send('Hello ' + req.user.username + '!');
       });

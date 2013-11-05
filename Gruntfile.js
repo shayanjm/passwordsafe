@@ -308,7 +308,7 @@ module.exports = function (grunt) {
     'usemin'
   ]);
 
-  grunt.registerTask('initDB', function(){
+  grunt.registerTask('initdb', function(){
     var mongoose = require('mongoose');
     var config = require(__dirname + '/config/config');
     var done = this.async();

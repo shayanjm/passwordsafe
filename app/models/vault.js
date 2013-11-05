@@ -1,6 +1,9 @@
 module.exports = function(mongoose) {
+    var bcrypt = require('bcrypt');
+    var SALT_WORK_FACTOR = 10;
     var Schema = mongoose.Schema;
     var VaultSchema = new Schema({
+        name: { type: String, required: true, unique: true },
         owner: { type: Schema.Types.ObjectId, ref: 'User' },
         combination: { type: String, required: true },
         applications: [{

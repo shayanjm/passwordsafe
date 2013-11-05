@@ -18,6 +18,12 @@ module.exports = function (app) {
         res.send('Hello ' + req.user.username + '!');
       });
 
+    app.post('/getVault',
+        passport.authenticate('vault'),
+        function(req,res) {
+            res.send('You now have access to Vault ' + req.vault.name + '.');
+        });
+
     app.get('/logout', function(req, res){
       req.logout();
       res.send('You have successfully signed out.');

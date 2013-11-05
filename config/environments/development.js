@@ -67,6 +67,8 @@ module.exports = function (app) {
         passport.deserializeUser(function(user, done){
             done(null, obj);
         });
+
+
         passport.use('user', new LocalStrategy(function(username, password, done) {
             User.findOne({ username: username }, function(err, user) {
                 if (err) { return done(err); }
@@ -77,6 +79,22 @@ module.exports = function (app) {
                     return done(null, user);
                   } else {
                     return done(null, false, { message: 'Invalid password' });
+                  }
+                });
+            });
+          }
+        ));
+
+        passport.use('vault', new LocalStrategy(function(name, combination, done) {
+            Vault.findOne({ name: name }, function(err, vault) {
+                if (err) { return done(err); }
+                if (!vault) { return done(null, false, { message: 'Unknown vault ' + name }); }
+                vault.compareCombination(combination, function(err, isMatch) {
+                  if (err) return done(err);
+                  if(isMatch) {
+                    return done(null, user);
+                  } else {
+                    return done(null, false, { message: 'Invalid combination' });
                   }
                 });
             });

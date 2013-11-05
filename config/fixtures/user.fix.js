@@ -1,40 +1,81 @@
-module.exports = function (done){
-    var mongoose = require('mongoose');
-    var config = require('../config');
-    mongoose.connect(config.development.db.uri);
+module.exports = function (done, mongoose){
     var User = require('../../app/models/user')(mongoose);
 
     // Let's create a few users.
-    user1 = new User({ username: "ShayanTest1", password: "ShayanTest1", email: "shayan@shayan.test", access: 5 });
+
+    // User 1 -> Regular user with a safe.
+    var user1 = new User({ username: "ShayanTest1", password: "ShayanTest1", email: "shayan@shayan.test", access: 5 });
     user1.save(function(err){
         if(err){
-            console.log("ERROR WITH SAVING FIXTURE:" + err)
+            console.log("ERROR WITH SAVING FIXTURE:" + err);
+            done(err);
         }
         else {
             console.log("Successfully saved user: " + user1.username);
+            done();
         }
-        done();
     });
 
-    user2 = new User({ username: "ShayanTest2", password: "ShayanTest2", email: "shayan@shayan.test", access: 1 });
-    user1.save(function(err){
+    var user2 = new User({ username: "ShayanTest2", password: "ShayanTest2", email: "shayan@shayan.test", access: 1 });
+    user2.save(function(err){
         if(err){
-            console.log("ERROR WITH SAVING FIXTURE:" + err)
+            console.log("ERROR WITH SAVING FIXTURE:" + err);
+            done(err);
         }
         else {
             console.log("Successfully saved user: " + user2.username);
+            done();
         }
-        done();
     });
 
-    user3 = new User({ username: "ShayanTest3", password: "ShayanTest3", email: "shayan@shayan.test", access: 0 });
-    user1.save(function(err){
+    var user3 = new User({ username: "ShayanTest3", password: "ShayanTest3", email: "shayan@shayan.test", access: 0 });
+    user3.save(function(err){
         if(err){
-            console.log("ERROR WITH SAVING FIXTURE:" + err)
+            console.log("ERROR WITH SAVING FIXTURE:" + err);
+            done(err);
         }
         else {
             console.log("Successfully saved user: " + user3.username);
+            done();
         }
-        done();
+    });
+
+    var Vault = require('../../app/models/vault')(mongoose);
+
+    // Let's create a user with a vault.
+    var user1 = new User({ username: "ShayanTestVault", password: "ShayanTestVault", email: "shayan@shayan.test", access: 5 });
+    user1.save(function(err){
+        if(err){
+            console.log("ERROR WITH SAVING FIXTURE:" + err);
+            done(err);
+        }
+        else {
+            console.log("Successfully saved user: " + user1.username);
+            done();
+        }
+    });
+
+    var vault1 = new Vault({ 'owner': user1._id, 'applications':[{ name: 'TestApp', username: 'ShayanTest1', password: 'ShayanTest1' }] });
+    vault1.save(function(err){
+        if(err){
+            console.log("ERROR WITH SAVING FIXTURE:" + err);
+            done(err);
+        }
+        else {
+            console.log("Successfully saved vault for owner: " + safe1.owner);
+            done();
+        }
+    });
+
+    // And now we update our user with the new vault ID.
+    User.findByIdAndUpdate(user1._id, {$push: { vaults: vault1._id }}, function(err){
+        if(err){
+            console.log("ERROR WITH UPDATING FIXTURE:" + err);
+            done(err);
+        }
+        else{
+            console.log("Successfully updated User1 with new vault ID " + vault1._id);
+            done();
+        }
     });
 };

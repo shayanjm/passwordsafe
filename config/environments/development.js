@@ -16,6 +16,7 @@ db.once('open', function callback() {
 
 // Setup our RESTful API
 var User;
+var Safe;
 function setupRest() {
 
     // Initialize Models to be exposed by API
@@ -23,6 +24,7 @@ function setupRest() {
 
     // Initialize Models not to be exposed by API
     User = require('../../app/models/user')(mongoose);
+    Vault = require('../../app/models/vault')(mongoose);
 
     // We want to only deliver the payload when we expose our API.
     rest.responseStream.prototype.format = function (data) {

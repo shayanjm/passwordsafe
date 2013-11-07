@@ -36,6 +36,14 @@ module.exports = function(mongoose) {
         });
     };
 
+    // VaultSchema.methods.isAvailableTo = function(candidateUser) {
+    //     if(candidateUser._id === this.owner){
+    //         return true;
+    //     }
+    //     if(err) return err;
+    //     else { return false; }
+    // }
+
     var Vault = mongoose.model('vault', VaultSchema);
     return Vault;
 };

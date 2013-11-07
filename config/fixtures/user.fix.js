@@ -3,7 +3,7 @@ module.exports = function (done, mongoose){
 
     // Let's create a few users.
 
-    // User 1 -> Regular user with a safe.
+    // User 1 -> Regular user with a vault.
     var user1 = new User({ username: "ShayanTest1", password: "ShayanTest1", email: "shayan@shayan.test", access: 5 });
     user1.save(function(err){
         if(err){
@@ -55,27 +55,29 @@ module.exports = function (done, mongoose){
         }
     });
 
-    var vault1 = new Vault({ 'owner': user1._id, 'applications':[{ name: 'TestApp', username: 'ShayanTest1', password: 'ShayanTest1' }] });
+    var vault1 = new Vault({ 'name': 'vault1', 'combination': 'vault1', 'owner': user1._id, 'applications':[{ name: 'TestApp', username: 'ShayanTest1', password: 'ShayanTest1' }] });
     vault1.save(function(err){
         if(err){
             console.log("ERROR WITH SAVING FIXTURE:" + err);
             done(err);
         }
         else {
-            console.log("Successfully saved vault for owner: " + safe1.owner);
+            console.log("Successfully saved vault for owner: " + vault1.owner);
             done();
         }
+        User.findByIdAndUpdate(user1._id, {$push: { vaults: vault1._id }}, function(err){
+            if(err){
+                console.log("ERROR WITH UPDATING FIXTURE:" + err);
+                done(err);
+            }
+            else{
+                console.log("Successfully updated User1 with new vault ID " + vault1._id);
+                done();
+            }
+        });
+        done();
     });
 
     // And now we update our user with the new vault ID.
-    User.findByIdAndUpdate(user1._id, {$push: { vaults: vault1._id }}, function(err){
-        if(err){
-            console.log("ERROR WITH UPDATING FIXTURE:" + err);
-            done(err);
-        }
-        else{
-            console.log("Successfully updated User1 with new vault ID " + vault1._id);
-            done();
-        }
-    });
+
 };
